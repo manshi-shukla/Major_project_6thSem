@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up</title>
+<style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+p{
+  text-align:right;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+form {
+  width: 50%;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  font-weight: bold;
+}
+
+select{
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+ 
+}
+
+input:invalid{
+  border-color: red;
+}
+
+input:valid {
+  border-color: #ccc;
+}
+
+</style>
+</head>
+<body>
+
+<h2>Sign Up</h2>
+<span style="color: red;">{{error}}</span>
+<form action="{% url 'signUp' %}" method="post" onsubmit="return validatePassword()">
+  {% csrf_token %}
+  <p>Already have acount? <a href="{% url 'Login' %}">sign in</a></p>
+  <label for="role"></label>
+  <select name="role" id="role">
+    <option value="donar">Donar</option>
+    <option value="recipient">recipient</option>
+  </select><br>
+
+  <label for="name">Name:</label><br>
+  <input type="text" id="name" name="name" required>
+  <br><span id="nameLabel" style="color: red;"></span> <br>
+  
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email" required><br>
+  
+  <label for="phone">Phone Number:</label><br>
+  <input type="tel" id="phone" name="phone" required>
+  <br> <span id="phoneErr" style="color: red;"></span><br>
+  
+  <label for="address">Address:</label><br>
+  <textarea id="address" name="address" rows="4" cols="50" required></textarea><br>
+  
+  <label for="pincode">Pin Code:</label><br>
+  <input type="text" id="pincode" name="pincode" required pattern="[0-9]{6}"><br>
+  
+  <label for="password">Password:</label><br>
+  <input type="password" id="password" name="password" required minlength="6"><br>
+  
+  <label for="confirm_password">Confirm Password:</label><br>
+  <input type="password" id="confirm_password" name="confirm_password" required minlength="6"><br>
+  <br><span id="passwordErr" style="color: red;"></span>
+  
+  <input type="submit" value="Submit">
+
+  <script>
+
+    function validatePassword() {
+
+        // name validation
+        var nameInput = document.getElementById("name");
+        var nameError = document.getElementById("nameLabel");
+        var nameRegex = /^[a-zA-Z\s]+$/;
+        if (!nameRegex.test(nameInput.value.trim())) {
+            nameError.textContent = "Name must contain only letters";
+            return false;
+        }
+        else{ nameError.textContent = "";}
+
+        // phone validation
+        var phoneInput = document.getElementById("phone");
+        var phoneError = document.getElementById("phoneErr");
+        var phoneRegex = /^[6789]{1}\d{9}$/;
+        // var phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
+
+        if (!phoneRegex.test(phoneInput.value)) {
+            phoneError.textContent = "Please enter a valid phone number (xxx-xxx-xxxx)";
+            return false;
+        }
+        else{phoneError.textContent = "";}
+
+        // password validation
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirm_password").value;
+        var errorMessage = document.getElementById("passwordErr");
+
+        if (password !== confirmPassword) {
+            errorMessage.textContent = "Passwords do not match!";
+            return false;
+        }
+        if (password.length < 8) {
+            errorMessage.textContent = "Password must be at least 8 characters long";
+            return false;
+        }else{errorMessage.textContent = "";}
+
+        return true;
+
+    }
+
+</script>
+
+
+</form>
+
+</body>
+</html>

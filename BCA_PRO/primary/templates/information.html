@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="static/css/styless.css">
+</head>
+
+<body>
+    <!-- Header section -->
+        <div class="welcom">
+            Blog on Food Wastage
+        </div>
+
+        <nav class="navbar container1">
+            <div class="logo">
+                <!-- <span>Share-A-bite</span> -->
+                <p style="font-size: 30px; color: cornsilk; font-weight: bold;">Share- <span
+                        style="color: yellow;">A</span>-Bite
+                </p>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Hunger in India</a></li>
+                <li><a href="#">Food Wastage</a></li>
+                <!-- <li><a href="#">Blog</a></li> -->
+            </ul>
+        </nav>
+
+
+
+    <!-- main section -->
+    <div class="container2">
+        <div class="user-box1">Our users</div><hr>
+        <div class="user-box">
+            <div>Doner</div>
+            <div>Recipient</div>
+        </div>
+
+    </div>
+    <div class="main2">
+        <div class="usr-records">
+            {% for x in record %}
+            {% if x.role == 'donar' %}
+            <div class="records">
+                <div class="sr">{{forloop.counter}}</div>
+                <div class="usrName">{{x.name}}</div>
+
+            </div>
+            {% endif %}
+           
+            {% endfor %}
+        </div>
+        <div class="usr-records">
+            {% for x in record %}
+            {% if x.role == 'recipient' %}
+            <div class="records">
+                <div class="sr">{{forloop.counter}}</div>
+                <div class="usrName">{{x.name}}</div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            
+        </div>
+    </div>
+<div>
+    <span style="color:green">{{success_msg}}</span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- this is contact section -->
+    <div id="contact-us" class="contact-us">
+        <div class="contact-us-button" onclick="toggleContactForm()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" style="fill: red;">
+                <path
+                    d="M17.707 12.293a.999.999 0 0 0-1.414 0l-1.594 1.594c-.739-.22-2.118-.72-2.992-1.594s-1.374-2.253-1.594-2.992l1.594-1.594a.999.999 0 0 0 0-1.414l-4-4a.999.999 0 0 0-1.414 0L3.581 5.005c-.38.38-.594.902-.586 1.435.023 1.424.4 6.37 4.298 10.268s8.844 4.274 10.269 4.298h.028c.528 0 1.027-.208 1.405-.586l2.712-2.712a.999.999 0 0 0 0-1.414l-4-4.001zm-.127 6.712c-1.248-.021-5.518-.356-8.873-3.712-3.366-3.366-3.692-7.651-3.712-8.874L7 4.414 9.586 7 8.293 8.293a1 1 0 0 0-.272.912c.024.115.611 2.842 2.271 4.502s4.387 2.247 4.502 2.271a.991.991 0 0 0 .912-.271L17 14.414 19.586 17l-2.006 2.005z">
+                </path>
+            </svg>
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg> -->
+            <p>Contact Us</p>
+        </div>
+        <div id="contact-form" class="contact-form">
+            <span class="close" onclick="toggleContactForm()">&times;</span>
+            <form id="contact-form-body" method= "post" action = "{% url 'information' %}" >
+                {% csrf_token %}
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="contact">Contact No:</label>
+                <input type="text" id="contact" name="contact">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+                <button type="submit" value="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- this is for footer section -->
+    <footer>
+        <div class="footer-box">
+            <div class="container flex">
+                <div class="div1">
+                    <h2>Stay Connected</h2>
+                    <div class="line1"></div>
+                    <ul class="quick-link">
+                        <li><a href="contact">Contact Us</a></li>
+                        <li class="mb-0">Email IDs :</li>
+                        <li> donateinkind.in@gmail.com <br> connect@donateinkind.in</li>
+                        <li class="mb-0">Facebook Page :</li>
+                        <li><a rel="nofollow" href="https://www.facebook.com/IndiaDonateinkind/" target="_blank">
+                                facebook.com/IndiaDonateinkind/</a></li>
+                        <li class="mb-0">Twitter Handle :</li>
+                        <li><a rel="nofollow" href="https://twitter.com/donate_in_kind" target="_blank">
+                                @donate_in_kind</a></li>
+                        <li class="mb-0">Linkedin Page :</li>
+                        <li><a rel="nofollow" href="https://www.linkedin.com/company/donate-in-kind" target="_blank">
+                                linkedin.com/company/<br>donate-in-kind</a></li>
+                        <li> Whatsapp Messaging <br> or Whatsapp Call :<br> +91 98200 13164</li>
+
+                    </ul>
+                </div>
+
+                <div class="div1">
+                    <h2>Donations in Kind</h2>
+                    <div class="flex1">
+                        <div>
+                            <ul class="quick-link">
+
+
+                                <li>
+                                    <a href="https://www.donateinkind.in/leftover-food-donation"
+                                        target="_blank">Leftover Food Donation</a>
+                                </li>
+
+                                <li>
+                                    <a href="https://www.donateinkind.in/donation-of-regular-food-meals"
+                                        target="_blank">Donation of Regular Food Meals</a>
+                                </li>
+
+                                <li>
+                                    <a href="https://www.donateinkind.in/donation-of-multiple-items"
+                                        target="_blank">Donation of Multiple Items</a>
+                                </li>
+                                <li>
+                                    <a href="https://www.donateinkind.in/bicycle-donation" target="_blank">Bicycle
+                                        Donation</a>
+                                </li>
+
+
+                                <li>
+                                    <a href="https://www.donateinkind.in/textbook-donation" target="_blank">Textbook
+                                        Donation</a>
+                                </li>
+
+                                <li>
+                                    <a href="https://www.donateinkind.in/donation-of-sanitary-pads"
+                                        target="_blank">Donation of Sanitary Pads</a>
+                                </li>
+
+
+                                <li>
+                                    <a href="https://www.donateinkind.in/blood-donation" target="_blank">Blood
+                                        Donation</a>
+                                </li>
+
+                                <li>
+                                    <a href="https://www.donateinkind.in/breast-milk-donation" target="_blank">Human
+                                        Milk Donation</a>
+                                </li>
+
+                                <li>
+                                    <a href="https://www.donateinkind.in/hair-donation" target="_blank">Hair
+                                        Donation</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="div1">
+                            <ul class="quick-link">
+
+                                <li>
+                                    <a href="https://www.donateinkind.in/food-donation-to-community-fridges"
+                                        target="_blank">Food Donation to Community Fridges</a>
+                                </li>
+
+
+                                <li>
+                                    <a href="https://www.donateinkind.in/clothes-donation" target="_blank">Clothes
+                                        Donation</a>
+                                </li>
+                                <li>
+                                    <a href="https://www.donateinkind.in/computer-and-laptop-donation"
+                                        target="_blank">Computer and Laptop Donation</a>
+                                </li>
+
+                                <li>
+                                    <a href="https://www.donateinkind.in/donation-of-new-and-used-books"
+                                        target="_blank">Donation of New and Used Books</a>
+                                </li>
+
+                                <li>
+                                    <a href="https://www.donateinkind.in/toy-donation" target="_blank">Toy Donation</a>
+                                </li>
+
+                                <li>
+                                    <a href="https://www.donateinkind.in/donation-of-items-for-upcycling"
+                                        target="_blank">Donation of Items for Upcycling</a>
+                                </li>
+
+                                <li>
+                                    <a href="https://www.donateinkind.in/donation-of-human-organs"
+                                        target="_blank">Donation of Human Organs</a>
+                                </li>
+
+
+                            </ul>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="div1">
+                    <h2>General</h2>
+                    <ul class="quick-link ">
+                        <li>
+                            <a href="https://www.donateinkind.in/food-donation-to-community-fridges"
+                                target="_blank">Food Donation to Community Fridges</a>
+                        </li>
+
+
+                        <li>
+                            <a href="https://www.donateinkind.in/clothes-donation" target="_blank">Clothes Donation</a>
+                        </li>
+                        <li>
+                            <a href="https://www.donateinkind.in/computer-and-laptop-donation" target="_blank">Computer
+                                and Laptop Donation</a>
+                        </li>
+
+                        <li>
+                            <a href="https://www.donateinkind.in/donation-of-new-and-used-books"
+                                target="_blank">Donation of New and Used Books</a>
+                        </li>
+
+                        <li>
+                            <a href="https://www.donateinkind.in/toy-donation" target="_blank">Toy Donation</a>
+                        </li>
+
+                        <li>
+                            <a href="https://www.donateinkind.in/donation-of-items-for-upcycling"
+                                target="_blank">Donation of Items for Upcycling</a>
+                        </li>
+
+                        <li>
+                            <a href="https://www.donateinkind.in/donation-of-human-organs" target="_blank">Donation of
+                                Human Organs</a>
+                        </li>
+
+
+                    </ul>
+
+                </div>
+            </div>
+
+            <div class="line_n"></div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleContactForm() {
+            var form = document.getElementById("contact-form");
+            form.style.display === "none" ? form.style.display = "block" : form.style.display = "none";
+        }
+
+
+
+    </script>
+</body>
+
+</html>
