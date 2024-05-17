@@ -23,7 +23,7 @@ def signUp(request):
         if not exist:
             signup = registered_info(name=name, email=email, phone=phone, address=address, pincode=pincode, password=password,role=role)
             signup.save()
-            return render(request,'sign_up.html',{'error':'Your Records has been submitted!'})
+            return render(request,'sign_in.html',{'error':''})
         else:
             return render(request,'sign_up.html',{'error':'You are already registered!'})
     return render(request,'sign_up.html')
@@ -56,5 +56,12 @@ def information(request):
             # Handle case where required fields are missing
             return render(request, 'information.html', {'error_msg': 'Please fill out all required fields.'})
     return render(request, 'information.html',{'record':registered_info.objects.all()})
+
+def Donor(request):
+    return render(request,"Donor_Dash.html")
+
+def reciever(request):
+    return render(request,"recipient_Dash.html")
+
      
 
