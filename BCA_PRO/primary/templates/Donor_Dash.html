@@ -172,10 +172,29 @@ input[type="submit"] {
             </div>
 
             <div _ngcontent-bxh-c73="" class="center-right-img">
-                <img _ngcontent-bxh-c73="" src="static/img//Group 9099.png"
-                    onclick="document.getElementById('id01').style.display='block'">
+                <img id="showFormButton" _ngcontent-bxh-c73="" src="static/img//Group 9099.png">
             </div>
 
+
+
+
+            <div class="container_Profiles">
+                <!-- <div _ngcontent-bxh-c73="" class="center-right-img">
+                    <img id="showFormButton" _ngcontent-bxh-c73="" src="Group 9099.png">
+                </div> -->
+                <!-- <button id="showFormButton">Show Form</button> -->
+                <form id="profileForm" style="display: none;">
+                    <div _ngcontent-yfv-c73="" class="user-iconimg text-center">
+                        <img _ngcontent-yfv-c73="" src="static/img/maleChild.png" width="150px" height="150px">
+                    </div>
+                    <p _ngcontent-rrw-c73="" class="text-center msg-info">Upload png or jpeg formats only and upto 150px X 150px</p>
+                    <div class="buttons">
+                        <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                        <button type="button" id="chooseFileButton">Choose File</button>
+                        <button type="button" id="deleteButton">Delete</button>
+                    </div>
+                </form>
+            </div>
 
 
             <!-- <div id="profile_pic">
@@ -282,6 +301,32 @@ input[type="submit"] {
 
             formContainer.style.display = "block"; // Show the form
         }
+
+
+// profile pic
+        document.getElementById('showFormButton').addEventListener('click', function () {
+            document.getElementById('profileForm').style.display = 'block';
+        });
+
+        document.getElementById('chooseFileButton').addEventListener('click', function () {
+            document.getElementById('fileInput').click();
+        });
+
+        document.getElementById('fileInput').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('profileImage').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('deleteButton').addEventListener('click', function () {
+            document.getElementById('profileImage').src = 'default-profile.png';
+            document.getElementById('fileInput').value = '';  // Clear the file input
+        });
 
 
     </script>
