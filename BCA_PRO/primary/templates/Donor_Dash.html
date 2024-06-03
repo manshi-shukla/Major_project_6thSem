@@ -1,10 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Share-A-Bite Dashboard</title>
     <link rel="stylesheet" href="static/css/styles_dash.css">
+
+    <style>
+        .sign-out {
+            background-color: rgba(12, 150, 12, 0.801);
+            width: 200px;
+            /* margin-top: 30px; */
+            padding: 10px;
+            border-radius: 10PX;
+
+
+        }
+
+        .sign-out {
+            position: relative;
+            top: 30px;
+            left: 1200px;
+            text-decoration: none;
+            color: black;
+            font-size: 20px;
+
+
+        }
+
+
+        .sign-out:hover {
+            /* color: #00b30fa5; */
+            text-decoration: underline;
+        }
+
+        .user-iconimg[_ngcontent-yfv-c73] img[_ngcontent-yfv-c73] {
+            border-radius: 50%;
+            padding: 40px;
+            text-align: center;
+            background-color: #fff;
+            border: 2px solid #c2d2dd;
+        }
+
+        .center-right-img[_ngcontent-bxh-c73] img[_ngcontent-bxh-c73] {
+            position: relative;
+            text-align: center;
+            border-radius: 30%;
+            cursor: pointer;
+            left: 57%;
+            width: 20px;
+            height: 20px;
+            object-fit: cover;
+            padding: 5px;
+            background-color: #e9e7e7;
+            top: -50px;
+        }
+
+        .dis-play[_ngcontent-ctj-c73] form[_ngcontent-ctj-c73] {
+            height: 30rem;
+            width: 40%;
+            display: -webkit-box;
+            display: flex;
+            -webkit-transform: translate(75%, 50%);
+            transform: translate(75%, 50%);
+            -webkit-box-pack: center;
+            justify-content: center;
+            padding: 2rem;
+            -webkit-box-align: center;
+            align-items: center;
+        }
+    </style>
     <!-- <style>
         body {
     font-family: Arial, sans-serif;
@@ -94,12 +160,46 @@ input[type="submit"] {
 }
     </style> -->
 </head>
+
 <body>
+
+    <div class="sign__out"> <a href="{% url 'user_logout' %}" class="sign-out">Sign out</a></div>
     <div class="dashboard">
         <div class="user-profile">
-            <img src="profile_picture.jpg" alt="Profile Picture"><br>
+            <!-- <img src="profile_picture.jpg" alt="Profile Picture"><br> -->
+            <div _ngcontent-yfv-c73="" class="user-iconimg text-center">
+                <img _ngcontent-yfv-c73="" src="static/img/maleChild.png" width="150px" height="150px">
+            </div>
 
-            <span class="user-name">John Doe</span>
+            <div _ngcontent-bxh-c73="" class="center-right-img">
+                <img _ngcontent-bxh-c73="" src="static/img//Group 9099.png"
+                    onclick="document.getElementById('id01').style.display='block'">
+            </div>
+
+
+
+            <!-- <div id="profile_pic">
+                <div _ngcontent-yfv-c73="" class="user-iconimg text-center">
+                    <img _ngcontent-yfv-c73="" src="static/img/maleChild.png" width="150px" height="150px">
+                </div>
+
+                <div _ngcontent-bxh-c73="" class="center-right-img">
+                    <img _ngcontent-bxh-c73="" src="static/img//Group 9099.png"
+                        onclick="document.getElementById('id01').style.display='block'">
+                </div>
+
+                <div>
+                    <button>upload</button>
+                    <input _ngcontent-ctj-c73="" id="profileimgs" type="file" name="myfile" title="Upload"
+                        accept="image/png, image/jpeg" style="cursor: pointer;">
+                </div>
+            </div> -->
+
+
+
+
+
+            <span class="user-name">{{user.username}}</span>
         </div>
         <div class="options">
             <button id="dashboard-btn">Dashboard</button>
@@ -107,27 +207,27 @@ input[type="submit"] {
             <button id="donation-history-btn">Donation History</button>
         </div>
         <div id="form-container" class="form-container">
-           
+
             <!-- Donation Form will be appended here -->
         </div>
     </div>
 
-    
+
     <script>
         document.getElementById("donate-btn").addEventListener("click", function () {
-    showForm("donate");
-});
+            showForm("donate");
+        });
 
-document.getElementById("donation-history-btn").addEventListener("click", function () {
-    showForm("donation-history");
-});
+        document.getElementById("donation-history-btn").addEventListener("click", function () {
+            showForm("donation-history");
+        });
 
-function showForm(formType) {
-    let formContainer = document.getElementById("form-container");
-    formContainer.innerHTML = ""; // Clear previous content
+        function showForm(formType) {
+            let formContainer = document.getElementById("form-container");
+            formContainer.innerHTML = ""; // Clear previous content
 
-    if (formType === "donate") {
-        formContainer.innerHTML = `
+            if (formType === "donate") {
+                formContainer.innerHTML = `
         <form action="#" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="itemName">Food Item Name:</label>
@@ -156,8 +256,8 @@ function showForm(formType) {
         <input type="submit" value="Donate or Submit">
     </form>
         `;
-    } else if (formType === "donation-history") {
-        formContainer.innerHTML = `
+            } else if (formType === "donation-history") {
+                formContainer.innerHTML = `
         <table>
   <tr>
     <th>Donate Date</th>
@@ -178,12 +278,13 @@ function showForm(formType) {
 
              
         `;
-    }
+            }
 
-    formContainer.style.display = "block"; // Show the form
-}
+            formContainer.style.display = "block"; // Show the form
+        }
 
 
     </script>
 </body>
+
 </html>

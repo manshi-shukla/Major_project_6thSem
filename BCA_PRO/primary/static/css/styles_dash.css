@@ -100,3 +100,28 @@ input[type="submit"]:hover {
         padding: 10px;
     }
 }
+
+
+
+/* profile pic */
+
+#profile_pic{
+    width: 600px;
+    height: 500px;
+}
+
+.upload-btn-wrapper[_ngcontent-ctj-c73] input[type=file][_ngcontent-ctj-c73] {
+    left: 2rem;
+    top: 2rem;
+    opacity: 0;
+    cursor: pointer;
+    padding: 21px 50px;
+    position: absolute;
+    width: 2px;
+    height: 0;
+}
+
+
+/* input[type=file] {
+    display: block;
+} */

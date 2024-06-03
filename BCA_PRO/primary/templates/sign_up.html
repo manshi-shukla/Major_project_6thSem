@@ -85,10 +85,10 @@ input:valid {
 <body>
 
 <h2>Sign Up</h2>
-<span style="color: red;">{{error}}</span>
-<form action="{% url 'signUp' %}" method="post" onsubmit="return validatePassword()">
+<span style="color: red;">{{error_msg}}</span>
+<form action="{% url 'user_signup' %}" method="post" onsubmit="return validatePassword()">
   {% csrf_token %}
-  <p>Already have acount? <a href="{% url 'Login' %}">sign in</a></p>
+  <p>Already have acount? <a href="{% url 'user_login' %}">sign in</a></p>
   <label for="role"></label>
   <select name="role" id="role">
     <option value="donar">Donar</option>
