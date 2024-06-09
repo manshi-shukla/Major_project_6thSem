@@ -9,4 +9,5 @@ urlpatterns = [
     path('Donor',views.Donor,name='donor'),
     path('reciever',views.reciever,name='reciever'),
     path('user_logout',views.user_logout,name='user_logout'),
+    # path('profile_img_del/<id>',views.profile_img_del,name='profile_img_del'),
 ]

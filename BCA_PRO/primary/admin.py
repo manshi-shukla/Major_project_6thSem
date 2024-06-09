@@ -10,3 +10,4 @@ admin.site.register(UserProfile)
 
 admin.site.register(contact_info)
 
+admin.site.register(DonationOption)

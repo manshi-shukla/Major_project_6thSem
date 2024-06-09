@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class UserProfile(models.Model):
     ROLE_CHOICES = [
-        ('donor', 'Donor'),
+        ('donar', 'Donar'),
         ('recipient', 'Recipient'),
     ]
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -13,7 +13,7 @@ class UserProfile(models.Model):
     address = models.TextField(blank=True)
     pincode = models.CharField(max_length=10, blank=True)
     role = models.CharField(max_length=20, choices=ROLE_CHOICES)
-    profile_pic = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
+    profile_pic = models.ImageField(upload_to='profile_pics', max_length= 300, default=None)
 
     def __str__(self):
         return self.user.username
@@ -53,10 +53,12 @@ class DonationOption(models.Model):
     food_items = models.CharField(max_length=255)
     shelf_life = models.IntegerField()
     number_of_food = models.IntegerField()
-    date_donated = models.DateField(auto_now_add=True)
+    date_donated = models.DateTimeField(auto_now_add=True)
+    food_pic=models.ImageField( upload_to=None, height_field=100, width_field=100, max_length=270)
     
     def __str__(self):
         return f'{self.user.username} - {self.food_items}'
+
 
 class Feedback(models.Model):
     donation = models.ForeignKey(DonationOption, on_delete=models.CASCADE)

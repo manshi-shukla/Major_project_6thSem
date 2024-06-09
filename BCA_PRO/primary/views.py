@@ -113,11 +113,24 @@ def information(request):
         else:
             # Handle case where required fields are missing
             return render(request, 'information.html', {'error_msg': 'Please fill out all required fields.'})
-    return render(request, 'information.html',{'record':UserProfile.objects.all()})
+    return render(request, 'information.html',{'donar':UserProfile.objects.filter( role = 'donar'), 'recipient': UserProfile.objects.filter( role = 'recipient'),})
 
 @login_required(login_url='user_login')
 def Donor(request):
-    return render(request,"Donor_Dash.html")
+    if request.method == 'POST':
+        usrname =  request.POST.get('username')
+        profile_img = request.FILES.get('profile_img')
+        user = User.objects.get(username = usrname)
+        x = UserProfile.objects.get(user = user)
+        if profile_img:
+            x.profile_pic.delete()
+            x.profile_pic = profile_img
+            x.save()
+       
+    return render(request,"Donor_Dash.html",{'rec':UserProfile.objects.get(user = user)})
+# def profile_img_del(request,id):
+#     UserProfile.objects.get(id=id).delete()
+#     return redirect(Donor)
 
 @login_required(login_url='user_login')
 def reciever(request):

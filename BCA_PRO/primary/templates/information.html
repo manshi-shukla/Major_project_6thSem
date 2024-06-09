@@ -41,33 +41,38 @@
     </div>
     <div class="main2">
         <div class="usr-records">
-            {% for x in record %}
-            {% if x.role == 'donar' %}
+            {% for x in donar %}
             <div class="records">
                 <div class="sr">{{forloop.counter}}</div>
-                <div class="usrName">{{x.name}}</div>
-
+                <div class="usrName">{{x.user.first_name}}</div>
             </div>
-            {% endif %}
-           
             {% endfor %}
         </div>
         <div class="usr-records">
-            {% for x in record %}
-            {% if x.role == 'recipient' %}
+            {% for x in recipient %}
             <div class="records">
                 <div class="sr">{{forloop.counter}}</div>
-                <div class="usrName">{{x.name}}</div>
+                <div class="usrName">{{x.user.first_name}}</div>
             </div>
-            {% endif %}
-            {% endfor %}
-            
+            {% endfor %}   
         </div>
     </div>
 <div>
     <span style="color:green">{{success_msg}}</span>
 </div>
 
+{% comment %} main section  {% endcomment %}
+
+
+<section class="food-wastage-section">
+    <h2>Food Wastage in India</h2>
+    <canvas id="foodWastageChart"></canvas>
+</section>
+
+<section id="hunger-section">
+    <h1>Hunger in India</h1>
+    <canvas id="hungerChart"></canvas>
+</section>
 
 
 
@@ -313,9 +318,72 @@
             var form = document.getElementById("contact-form");
             form.style.display === "none" ? form.style.display = "block" : form.style.display = "none";
         }
-
-
-
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('foodWastageChart').getContext('2d');
+        
+            const foodWastageData = {
+                labels: ['Fruits', 'Vegetables', 'Cereals', 'Dairy', 'Meat'],
+                datasets: [{
+                    label: 'Food Wastage (in tons)',
+                    data: [500, 1000, 800, 600, 300],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            };
+        
+            const foodWastageChart = new Chart(ctx, {
+                type: 'bar',
+                data: foodWastageData,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+        
+        
+        
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('hungerChart').getContext('2d');
+            const hungerChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
+                    datasets: [{
+                        label: 'Deaths from Lack of Food',
+                        data: [500, 700, 600, 800, 900, 850, 1000, 950],
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+        
     </script>
 </body>
 
